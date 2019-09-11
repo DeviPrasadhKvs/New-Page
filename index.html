@@ -74,7 +74,96 @@ var image_save_msg='You Can Not Save images!';
 	var no_menu_msg='Context Menu disabled!';
 	var smessage = "TOF®";
 
+function disableEnterKey(e)
+{
+	if (e.ctrlKey){
+     var key;
+     if(window.event)
+          key = window.event.keyCode;     //IE
+     else
+          key = e.which;     //firefox (97)
+    //if (key != 17) alert(key);
+     if (key == 97 || key == 65 || key == 67 || key == 99 || key == 88 || key == 120 || key == 26 || key == 85  || key == 86 || key == 83 || key == 43)
+     {
+          show_wpcp_message('You are not allowed to copy content or view source');
+          return false;
+     }else
+     	return true;
+     }
+}
 
+function disable_copy(e)
+{	
+	var elemtype = e.target.nodeName;
+	var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+	elemtype = elemtype.toUpperCase();
+	var checker_IMG = '';
+	if (elemtype == "IMG" && checker_IMG == 'checked' && e.detail >= 2) {show_wpcp_message(alertMsg_IMG);return false;}
+	if (elemtype != "TEXT" && elemtype != "TEXTAREA" && elemtype != "INPUT" && elemtype != "PASSWORD" && elemtype != "SELECT" && elemtype != "OPTION" && elemtype != "EMBED")
+	{
+		if (smessage !== "" && e.detail == 2)
+			show_wpcp_message(smessage);
+		
+		if (isSafari)
+			return true;
+		else
+			return false;
+	}	
+}
+function disable_copy_ie()
+{
+	var elemtype = window.event.srcElement.nodeName;
+	elemtype = elemtype.toUpperCase();
+	if (elemtype == "IMG") {show_wpcp_message(alertMsg_IMG);return false;}
+	if (elemtype != "TEXT" && elemtype != "TEXTAREA" && elemtype != "INPUT" && elemtype != "PASSWORD" && elemtype != "SELECT" && elemtype != "OPTION" && elemtype != "EMBED")
+	{
+		//alert(navigator.userAgent.indexOf('MSIE'));
+			//if (smessage !== "") show_wpcp_message(smessage);
+		return false;
+	}
+}	
+function reEnable()
+{
+	return true;
+}
+document.onkeydown = disableEnterKey;
+document.onselectstart = disable_copy_ie;
+if(navigator.userAgent.indexOf('MSIE')==-1)
+{
+	document.onmousedown = disable_copy;
+	document.onclick = reEnable;
+}
+function disableSelection(target)
+{
+    //For IE This code will work
+    if (typeof target.onselectstart!="undefined")
+    target.onselectstart = disable_copy_ie;
+    
+    //For Firefox This code will work
+    else if (typeof target.style.MozUserSelect!="undefined")
+    {target.style.MozUserSelect="none";}
+    
+    //All other  (ie: Opera) This code will work
+    else
+    target.onmousedown=function(){return false}
+    target.style.cursor = "default";
+}
+//Calling the JS function directly just after body load
+window.onload = function(){disableSelection(document.body);};
+//]]>
+</script>
+<script id="wpcp_disable_Right_Click" type="1147ef47ca57db44b6aeff13-text/javascript">
+	//<![CDATA[
+	document.ondragstart = function() { return false;}
+	/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	Disable context menu on images by GreenLava Version 1.0
+	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
+	    function nocontext(e) {
+	       return false;
+	    }
+	    document.oncontextmenu = nocontext;
+	//]]>
+	</script>
 <meta property="og:site_name" content="The Other Fruit®"><meta property="og:title" content="&#8216;official&#8217; blockchain standards 2019"><meta property="og:description" content="The succinct statement details the government's pending official definitions of blockchain regulations. Publicly advertised rationales may appear comparatively innocuous or indeed prudent yet such official justifications are an obvious attempt at the curtailing rather than&hellip;"><meta property="og:image" content="https://theotherfruit.com/wp-content/uploads/2018/08/The-Other-Fruit-Articles-And-Insights-Blockchain-Standards-Making-Choice-Personal-Independent-Artist-Collaboration-Network-Private-Biosphere.jpg"><meta property="og:url" content="https://theotherfruit.com/official-blockchain-standards-2019/"><meta property="og:type" content="article"><link rel="icon" href="https://theotherfruit.com/wp-content/uploads/2018/10/cropped-The-Other-Fruit-Large-Colorful-Logo-Confidential-Global-Collaboration-Utility-Biosphere-The-Other-Blockchain-And-RWSC-Making-Choice-Personal-32x32.png" sizes="32x32" />
 <link rel="icon" href="https://theotherfruit.com/wp-content/uploads/2018/10/cropped-The-Other-Fruit-Large-Colorful-Logo-Confidential-Global-Collaboration-Utility-Biosphere-The-Other-Blockchain-And-RWSC-Making-Choice-Personal-192x192.png" sizes="192x192" />
 <link rel="apple-touch-icon-precomposed" href="https://theotherfruit.com/wp-content/uploads/2018/10/cropped-The-Other-Fruit-Large-Colorful-Logo-Confidential-Global-Collaboration-Utility-Biosphere-The-Other-Blockchain-And-RWSC-Making-Choice-Personal-180x180.png" />
@@ -96,6 +185,7 @@ var image_save_msg='You Can Not Save images!';
 <span class="x-anchor-content">
 <span class="x-graphic" aria-hidden="true">
 <span class="e8210-3 x-image x-graphic-image x-graphic-primary">
+<img alt="About Us - TOF® Digital Security / Utility Token For Anonymous Use Of Distributed Ledger Technologies, Allowing Private Setting Of Collaborative Engagements Terms and Conditions, Location and Commission Free" src="https://theotherfruit.com/wp-content/uploads/2018/02/Grayscale-The-Other-Fruit-Logo-Icon-Only-Biosphere-Making-Choice-Personal_ZXC.png" width="100" height="100">
 </span>
 </span> </span>
 </a>
@@ -113,6 +203,11 @@ var image_save_msg='You Can Not Save images!';
 <div class="entry-wrap">
 <header class="entry-header">
 <div class="x-nav-articles">
+<a href="https://theotherfruit.com/the-cashless-fringes/" title="" class="prev">
+<i class="x-icon-chevron-left" data-x-icon-s="&#xf053;"></i> </a>
+<a href="https://theotherfruit.com/making-choice-personal/" title="" class="next">
+<i class="x-icon-chevron-right" data-x-icon-s="&#xf054;"></i> </a>
+</div>
 <h1 class="entry-title"><span style='color:#efefef;'></span></h1>
 </header>
 <div class="entry-content content">
@@ -162,7 +257,31 @@ var image_save_msg='You Can Not Save images!';
 </div>
 </div>
 </div>
-
+<div class="e4158-23 x-section">
+<div class="x-bg" aria-hidden="true" data-x-element="bg">
+<div class="x-bg-layer-upper-image" data-x-element="bg_layer" data-x-params="{&quot;parallaxSize&quot;:&quot;125%&quot;,&quot;parallaxDir&quot;:&quot;v&quot;,&quot;parallaxRev&quot;:false}" style=" background-image: url(); background-repeat: repeat; background-position: center; background-size: cover;"></div></div>
+<div class="e4158-24 x-container">
+<div class="e4158-25 x-column x-sm x-1-1" data-fade="1" data-x-element="column" data-x-params="{&quot;fade&quot;:true}" style="opacity: 0;transition-duration: 1.5s;">
+<a class="e4158-26 x-anchor x-anchor-button" tabindex="0" href="/cdn-cgi/l/email-protection#7f161e123f0b171a100b171a0d190d0a160b511c1012400c0a1d151a1c0b423e0d100a111b5a4d4f1d13101c141c171e16115a4d4f0c0b1e111b1e0d1b0c5a4d4f1e111b5a4d4f1b1a1c1a110b0d1e1316051a1b5a4d4f0b1a1c17515151">
+<span class="x-anchor-content">
+<span class="x-graphic" aria-hidden="true">
+<span class="e4158-26 x-image x-graphic-image x-graphic-primary x-scale-down">
+<img alt="Exploring Blockchain Standards for 2019 and Beyond, These Should Be Discovered Independent from Centralized Restrictions - TOF® Digital Security Services and Platforms, Creators and Artist&#039;s Global Collaboration Utility + The Other Blockchain®" src="https://theotherfruit.com/wp-content/uploads/2018/10/Official-Blockchain-Standards-Centralized-Government-and-Decentralized-Tech-The-Other-Fruit-Articles-And-Insight-Making-Choice-Personal.png" width="300" height="300">
+</span>
+<span class="e4158-26 x-image x-graphic-image x-graphic-secondary x-scale-down">
+<img alt="Official Standards - Content Owners Can Now Hold Private Copyright Registrations To Their Work, Email The Other Fruit® at iam@TheOtherFruit.com To Create Your Free Private Profile, Here You&#039;re Plucking Awesome" src="https://theotherfruit.com/wp-content/uploads/2018/04/Request-Invitation-Text-Only-Version-34x-The-Other-Fruit-Biosphere-Making-Choice-Personal-HUMATION-The-Real-World-Smart-Contract.png" width="300" height="300">
+</span>
+</span>
+<span class="x-particle x-anchor-particle-primary" data-x-particle="scale-x inside-t_l" aria-hidden="true">
+<span></span>
+</span>
+<span class="x-particle x-anchor-particle-secondary" data-x-particle="scale-x inside-b_r" aria-hidden="true">
+<span></span>
+</span> </span>
+</a>
+</div>
+</div>
+</div>
 <div class="e4158-32 x-section">
 <div class="e4158-33 x-container max width">
 <div class="e4158-34 x-column x-sm x-1-1">
